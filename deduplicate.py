@@ -24,5 +24,12 @@ print("Number of de-duplicated sentences:  "+str(len(deduplicated_docs)))
 
 #print(deduplicated_docs)
 
-for i in deduplicated_docs:
-    print(i)
+#for i in deduplicated_docs:
+#    print(i)
+
+with open("deduplicated_categories.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerow(["category"])  # header
+
+    for i in deduplicated_docs:
+        writer.writerow([i])

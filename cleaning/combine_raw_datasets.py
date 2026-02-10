@@ -2,13 +2,13 @@
 
 import pandas as pd
 
-def clean_csv(input_file, output_file):
-    just_positive=False #True if you want to grab the messages that are only phishing
+def clean_csv(input_file, output_file, just_positive=False):
+    #just_positive=False #True if you want to grab the messages that are only phishing
 
     # Read the CSV file
     df = pd.read_csv(input_file, dtype=str)
     
-    # Filter rows where 'label' column equals 1
+    # This filters the resulting combined dataset 
     if just_positive: df = df[df['label'] == '1']
     
     # Rename columns
@@ -31,11 +31,11 @@ def clean_csv(input_file, output_file):
     # Append to the output CSV file
     df.to_csv(output_file, mode='a', header=not pd.io.common.file_exists(output_file), index=False)
 
-# Example usage
-output_csv = 'data/combined_human_dataset.csv'
 
-clean_csv("data/raw/SpamAssasin.csv", output_csv)
-clean_csv("data/raw/CEAS_08.csv", output_csv)
-clean_csv("data/raw/Ling.csv", output_csv)
-clean_csv("data/raw/Nazario.csv", output_csv)
-clean_csv("data/raw/Nigerian_Fraud.csv", output_csv)
+combined_output_csv = 'data/unfiltered_combined_human_dataset.csv'
+
+clean_csv("data/raw/SpamAssasin.csv", combined_output_csv)
+clean_csv("data/raw/CEAS_08.csv", combined_output_csv)
+clean_csv("data/raw/Ling.csv", combined_output_csv)
+clean_csv("data/raw/Nazario.csv", combined_output_csv)
+clean_csv("data/raw/Nigerian_Fraud.csv", combined_output_csv)

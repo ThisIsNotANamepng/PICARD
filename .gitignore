@@ -1,3 +1,4 @@
 data/*
 venv/
 tuning_dir/
+tmp/

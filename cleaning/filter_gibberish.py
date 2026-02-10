@@ -1,4 +1,5 @@
 # Removes lines with special characters from the combined_human_dataset.csv human emails. When used with --dry-run just prints stats, doesn't remove
+# Have to decide what consitute gibberish, right now it just filters out emojis
 
 import argparse
 import csv
@@ -61,4 +62,5 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    process(Path("data/combined_human_dataset.csv"), args.dry_run)
+    
+    process(Path("data/unfiltered_human_dataset.csv"), args.dry_run)

@@ -21,7 +21,6 @@ while True:
     with open(file_path, mode='r') as file:
         reader = list(csv.DictReader(file))
 
-
     for row in reader:
 
         #if new_row:
@@ -43,7 +42,6 @@ while True:
                 "stream": False
             }
 
-
             # Send the request to the API
             response = requests.post(url, json=data)
             if response.status_code == 200:
@@ -54,7 +52,6 @@ while True:
             
             # Get the multiline output and format new lines as \n
             output = response_data.get('response', '').replace('\n', '\\n')
-  
 
             # Write to the output CSV, handling multiline outputs
             with open(output_path, mode='a', newline='', encoding='utf-8') as output_file:
@@ -66,7 +63,6 @@ while True:
                     'prompt': row['prompt'],
                     'output': output
                 })
-
 
             row['iterations'] = str(iterations-1)
             #print(str(iterations-1))
